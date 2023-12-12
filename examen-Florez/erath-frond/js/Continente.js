@@ -33,7 +33,7 @@ function save() {
     // Construir el objeto data
     var data = {
       'nombre': $('#nombre').val(),
-      'telefono': $('#codigo').val(),
+      'codigo': $('#codigo').val(),
       'estado': parseInt($('#estado').val()),
     };
     var id = $("#id").val();
@@ -69,15 +69,18 @@ function save() {
   
         data.forEach(function (item) {
           // Construir el HTML para cada objeto
+          if (!item.fechaEliminacion) {
           html += `<tr>
                   <td>`+ item.id + `</td>
                   <td>`+ item.nombre + `</td>
                   <td>`+ item.codigo + `</td>
-                  <td>`+ (item.estado == true ? 'Activio' : 'Inactivo') + `</td>
+                  <td>`+ (item.estado == true ? 'Activo' : 'Inactivo') + `</td>
                   <th><img src="../asset/icon/pencil-square.svg" alt="" onclick="findById(`+ item.id + `)"></th>
                   <th><img src="../asset/icon/trash3.svg" alt="" onclick="deleteById(`+ item.id + `)"></th>
               </tr>`;
+          }
         });
+
   
         $('#resultData').html(html);
       },

@@ -72,15 +72,18 @@ function save() {
   
         data.forEach(function (item) {
           // Construir el HTML para cada objeto
+          if (!item.fechaEliminacion) {
+
           html += `<tr>
                   <td>`+ item.id + `</td>
                   <td>`+ item.nombre + `</td>
                   <td>`+ item.codigo + `</td>
                   <td>`+ item.continenteId.nombre + `</td>
-                  <td>`+ (item.estado == true ? 'Activio' : 'Inactivo') + `</td>
+                  <td>`+ (item.estado == true ? 'Activo' : 'Inactivo') + `</td>
                   <th><img src="../asset/icon/pencil-square.svg" alt="" onclick="findById(`+ item.id + `)"></th>
                   <th><img src="../asset/icon/trash3.svg" alt="" onclick="deleteById(`+ item.id + `)"></th>
               </tr>`;
+          }
         });
   
         $('#resultData').html(html);
@@ -133,7 +136,7 @@ function save() {
     })
   }
 
-  //ESTE MÉTODO MUESTRA LOS DATOS DE CLIENTES
+  //ESTE MÉTODO MUESTRA LOS DATOS DE CONTINENTES
 function selectContinente() {
     $.ajax({
       url: 'http://localhost:9000/v1/api/continente',

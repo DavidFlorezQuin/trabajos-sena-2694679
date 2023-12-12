@@ -9,5 +9,5 @@ public class EarthCrudApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EarthCrudApplication.class, args);
 	}
-
+	
 }

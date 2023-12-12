@@ -36,7 +36,7 @@ function save() {
     // Construir el objeto data
     var data = {
       'nombre': $('#nombre').val(),
-      'telefono': $('#codigo').val(),
+      'codigo': $('#codigo').val(),
       'estado': parseInt($('#estado').val()),
     };
     var id = $("#id").val();
@@ -72,6 +72,8 @@ function save() {
   
         data.forEach(function (item) {
           // Construir el HTML para cada objeto
+          if (!item.fechaEliminacion) {
+
           html += `<tr>
                   <td>`+ item.id + `</td>
                   <td>`+ item.nombre + `</td>
@@ -81,6 +83,7 @@ function save() {
                   <th><img src="../asset/icon/pencil-square.svg" alt="" onclick="findById(`+ item.id + `)"></th>
                   <th><img src="../asset/icon/trash3.svg" alt="" onclick="deleteById(`+ item.id + `)"></th>
               </tr>`;
+          }
         });
   
         $('#resultData').html(html);
@@ -121,7 +124,7 @@ function save() {
   
   function deleteById(id) {
     $.ajax({
-      url: 'http://localhost:9000/v1/api/continente/' + id,
+      url: 'http://localhost:9000/v1/api/pais/' + id,
       method: "delete",
       headers: {
         "Content-Type": "application/json"
